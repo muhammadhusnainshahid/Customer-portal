@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AppDrawer extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -86,17 +85,7 @@ class AppDrawer extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(height: 5),
-                        Text(
-                          '${userDetails['email']}',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                    
                   _buildListTile(
                       context, 'App Settings', '/app_settings', Icons.settings),
                   _buildListTile(context, 'Customer Support',
@@ -105,10 +94,6 @@ class AppDrawer extends StatelessWidget {
                       context, 'Edit Profile', '/edit_profile', Icons.edit),
                   _buildListTile(
                       context, 'Languages', '/languages', Icons.language),
-                  _buildListTile(context, 'Notifications', '/notifications',
-                      Icons.notifications),
-                  _buildListTile(context, 'Profile', '/profile', Icons.person),
-                  _buildListTile(context, 'Rate Us', '/rate_us', Icons.star),
                   _buildListTile(context, 'Terms & Conditions',
                       '/terms_conditions', Icons.info),
                   ListTile(
@@ -140,10 +125,6 @@ class AppDrawer extends StatelessWidget {
       BuildContext context, String title, String routeName, IconData iconData) {
     return ListTile(
       leading: Icon(iconData, color: Colors.white),
-      title: Text(
-        title,
-        style: TextStyle(fontSize: 16.0, color: Colors.white),
-      ),
       onTap: () {
         Navigator.pushNamed(context, routeName);
       },
