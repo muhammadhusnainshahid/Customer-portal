@@ -8,16 +8,6 @@ class InvoiceSummaryScreen extends StatelessWidget {
   final String personName;
   final String email;
 
-  const InvoiceSummaryScreen({
-    Key? key,
-    required this.totalPay,
-    required this.currentPay,
-    required this.remainingPay,
-    required this.nextInstallmentDate,
-    required this.personName,
-    required this.email,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,11 +71,6 @@ class InvoiceSummaryScreen extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
       decoration: BoxDecoration(
         color: Colors.deepPurple,
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: ListTile(
-        title: Text(
-          title,
           style:
               const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
