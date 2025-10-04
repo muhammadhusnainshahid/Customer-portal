@@ -18,17 +18,17 @@ A modern Flutter application for managing customer accounts, viewing transaction
 ## 📸 Screenshots
 
 ### Authentication & Dashboard
-| Login Screen | Signup Screen | Dashboard |
+| Splash Screen | Login Screen | Signup Screen  |
 |--------------|---------------|-----------|
 | <img src="https://github.com/user-attachments/assets/1ead88cd-688e-4690-b1b6-f37eaa21807f" width="200"> | <img src="https://github.com/user-attachments/assets/4805d223-6894-4a80-abbf-d414ec3d4bab" width="200"> | <img src="https://github.com/user-attachments/assets/36fb2e18-5f72-4d17-ac2f-9bf2fd0c5154" width="200"> |
 
-### Customer Management
-| Customer Registration | Installment Plans | Payment Logs |
+### Customer Management & Settings
+| Dashboard  | Installment Plans | Settings  |
 |----------------------|-------------------|--------------|
 | <img src="https://github.com/user-attachments/assets/2e9815e1-4b20-4f4e-963e-925e8f6fcb07" width="200"> | <img src="https://github.com/user-attachments/assets/4cc3745f-c52a-477e-8789-19151254170c" width="200"> | <img src="https://github.com/user-attachments/assets/7ef37155-ffbc-4e51-aa5e-5b19dbc0dc35" width="200"> |
 
-### Profile & Settings
-| Profile Screen | Notifications | App Settings |
+### Profile 
+| Profile Screen | Customer Registration | Customer Profile |
 |----------------|---------------|--------------|
 | <img src="https://github.com/user-attachments/assets/d7311bf5-3436-4015-bad4-f02446c65046" width="200"> | <img src="https://github.com/user-attachments/assets/09937211-70f6-4512-ad16-36394b4f8a9b" width="200"> | <img src="https://github.com/user-attachments/assets/4102a8ab-4710-43c3-bdc4-677461284120" width="200"> |
 
