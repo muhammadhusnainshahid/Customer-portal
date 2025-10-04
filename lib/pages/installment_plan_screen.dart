@@ -1,8 +1,5 @@
 import 'package:customer_portal/pages/InvoiceListScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:intl/intl.dart';
-import 'package:flutter_email_sender/flutter_email_sender.dart';
 import 'package:flutter/foundation.dart' show kIsWeb; // Platform check for web
 
 class InstallmentPlanScreen extends StatefulWidget {
@@ -95,19 +92,6 @@ class _InstallmentPlanScreenState extends State<InstallmentPlanScreen> {
         }
       }
 
-      // Navigate to the next screen (InvoiceListScreen)
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => InvoiceListScreen()),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-            content: Text('Please fill in all fields with valid data.')),
-      );
-    }
-  }
-
   bool validateEmail(String email) {
     String emailPattern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
     RegExp regex = RegExp(emailPattern);
@@ -155,21 +139,6 @@ class _InstallmentPlanScreenState extends State<InstallmentPlanScreen> {
                 totalPayController, TextInputType.number),
             const SizedBox(height: 16),
             buildListTile(Icons.money_off, 'Current Paid', currentPayController,
-                TextInputType.number),
-            const SizedBox(height: 16),
-            buildListTile(Icons.email, 'Email', emailController,
-                TextInputType.emailAddress),
-            const SizedBox(height: 16),
-            buildDatePicker(context),
-            const SizedBox(height: 16),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: ElevatedButton(
-                onPressed: sendInvoice,
-                style: ElevatedButton.styleFrom(
-                  padding: const EdgeInsets.symmetric(vertical: 16.0),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
                   ),
                   backgroundColor: Colors.white,
                   foregroundColor: Colors.blueAccent,
