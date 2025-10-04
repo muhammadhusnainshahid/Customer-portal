@@ -1,7 +1,6 @@
 import 'package:customer_portal/pages/InvoiceListScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'dart:io';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -123,12 +122,6 @@ class _PaymentLogScreenState extends State<PaymentLogScreen> {
                           .collection('emails')
                           .doc(docId)
                           .delete();
-                      Navigator.of(context).pop(); // Close the dialog
-                      _showTotalEmailReceived(); // Refresh the list
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text('$email deleted successfully')),
-                      );
-                    },
                   ),
                 );
               }).toList(),
@@ -206,14 +199,6 @@ class _PaymentLogScreenState extends State<PaymentLogScreen> {
                   child: Text('Total Email Received'),
                 ),
               ],
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-              ),
-              onPressed: _deleteTransaction,
-              child: Text('Delete Transaction'),
             ),
             SizedBox(height: 16),
             ElevatedButton(
