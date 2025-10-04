@@ -1,10 +1,5 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'app_drawer.dart';
-import 'customer_registration_screen.dart';
 import 'payment_log_screen.dart';
 import 'installment_plan_screen.dart';
 
@@ -133,51 +128,6 @@ class _AccountDashboardScreenContentState
     }
   }
 
-  void calculatePayments() async {
-    final snapshot =
-        await FirebaseFirestore.instance.collection('invoices').get();
-
-    double total = 0.0;
-    double remaining = 0.0;
-
-    for (var doc in snapshot.docs) {
-      final data = doc.data() as Map<String, dynamic>;
-      total += (data['totalPay'] ?? 0.0) as double;
-      remaining += (data['remainingPay'] ?? 0.0) as double;
-    }
-
-    setState(() {
-      totalPayment = total;
-      remainingPayment = remaining;
-    });
-  }
-
-  void generateAndViewReport() async {
-    final pdf = pw.Document();
-    final balances =
-        'Advance Balance: Rs. $advanceBalance\nUdhaar Balance: Rs. $udhaarBalance';
-
-    pdf.addPage(
-      pw.Page(
-        build: (pw.Context context) => pw.Center(
-          child: pw.Text(
-            balances,
-            style: pw.TextStyle(fontSize: 24),
-          ),
-        ),
-      ),
-    );
-
-    final pdfData = await pdf.save();
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => PdfViewerScreen(pdfData: pdfData),
-      ),
-    );
-  }
-
   @override
   void dispose() {
     _searchController.dispose();
@@ -245,20 +195,7 @@ class _AccountDashboardScreenContentState
                   ],
                 ),
               ),
-              Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: isMobile ? 16.0 : 24.0),
-                child: TextButton(
-                  onPressed: generateAndViewReport,
-                  child: Text(
-                    'View Report',
-                    style: TextStyle(
-                      color: Colors.deepPurpleAccent,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-              ),
+          
               Padding(
                 padding:
                     EdgeInsets.symmetric(horizontal: isMobile ? 16.0 : 24.0),
@@ -343,17 +280,7 @@ class _AccountDashboardScreenContentState
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
-          ),
+    
           SizedBox(height: 8),
           Text(
             'Rs. $amount',
@@ -419,18 +346,7 @@ class CustomerCard extends StatelessWidget {
   final String expireDate;
   final VoidCallback onDelete;
 
-  const CustomerCard({
-    Key? key,
-    required this.name,
-    required this.phone,
-    required this.registerKey,
-    required this.addedDate,
-    required this.deal,
-    required this.businessName,
-    required this.expireDate,
-    required this.onDelete,
-  }) : super(key: key);
-
+ 
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -490,14 +406,7 @@ class CustomerCard extends StatelessWidget {
                     child: Text('Deal: $deal', style: TextStyle(fontSize: 14))),
               ],
             ),
-            Row(
-              children: [
-                Icon(Icons.business, size: 16, color: Colors.grey),
-                SizedBox(width: 8),
-                Expanded(
-                    child: Text('Business Name: $businessName',
-                        style: TextStyle(fontSize: 14))),
-              ],
+
             ),
             Row(
               children: [
@@ -576,26 +485,7 @@ class CustomerDetailScreen extends StatelessWidget {
                     child:
                         Text('Phone: $phone', style: TextStyle(fontSize: 18))),
               ],
-            ),
-            SizedBox(height: 8),
-            Row(
-              children: [
-                Icon(Icons.vpn_key, size: 24, color: Colors.grey),
-                SizedBox(width: 8),
-                Expanded(
-                    child: Text('Register Key: $registerKey',
-                        style: TextStyle(fontSize: 18))),
-              ],
-            ),
-            SizedBox(height: 8),
-            Row(
-              children: [
-                Icon(Icons.calendar_today, size: 24, color: Colors.grey),
-                SizedBox(width: 8),
-                Expanded(
-                    child: Text('Added Date: $addedDate',
-                        style: TextStyle(fontSize: 18))),
-              ],
+
             ),
             SizedBox(height: 8),
             Row(
@@ -648,9 +538,6 @@ class PdfViewerScreen extends StatelessWidget {
       body: PDFView(
         pdfData: pdfData,
         enableSwipe: true,
-        swipeHorizontal: true,
-        autoSpacing: false,
-        pageFling: true,
         pageSnap: true,
         fitPolicy: FitPolicy.BOTH,
       ),
